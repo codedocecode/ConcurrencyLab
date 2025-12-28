@@ -1,0 +1,8 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/Level1_AsyncConcurrency/obj
+/Level2_ParallelCPU/obj
+/Level3_TaskThreadPool/obj
+/Level4_MixedModel/obj
