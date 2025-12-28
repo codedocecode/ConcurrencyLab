@@ -6,3 +6,6 @@
 /Level2_ParallelCPU/obj
 /Level3_TaskThreadPool/obj
 /Level4_MixedModel/obj
+/.vs/ConcurrencyLab/DesignTimeBuild
+/.vs/ConcurrencyLab
+
