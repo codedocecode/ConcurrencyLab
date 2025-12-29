@@ -1,18 +1,19 @@
 ﻿# 🧪 ConcurrencyLab – Exercises & Challenges
 
-Este cuaderno te guía misión por misión para experimentar y aprender **concurrencia, asincronía y paralelismo en C# (.NET)**.  
-Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observaciones.
+This notebook guides you **mission by mission** to experiment and learn  
+**concurrency, asynchrony, and parallelism in C# (.NET)**.  
+Always **predict the outcome before running** and take notes of your observations.
 
 ---
 
 ## 🏆 Completion status
 
-- Level 1 completed: ⬜
-- Level 2 completed: ⬜
-- Level 3 completed: ⬜
-- Level 4 completed: ⬜
+- [ ] Level 1 completed
+- [ ] Level 2 completed
+- [ ] Level 3 completed
+- [ ] Level 4 completed
 
-> A level is completed only when all missions are understood, not just executed.
+> A level is considered completed only when all missions are understood, not just executed.
 
 ---
 
@@ -24,38 +25,32 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 - [ ] Mission 4 – WhenAll
 
 ### Mission 1 – SequentialAwait
-- Ejecuta la misión tal cual y anota los `ThreadId` antes y después de cada `await`.
-- **Reto:** Añade otra llamada `await OperacionAsync("Archivo", 700)` y predice el orden de ejecución.
-- **Pregunta:** ¿Se observa algún paralelismo real?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
-
----
+- Run the mission as-is and note `ThreadId` before and after each `await`.
+- **Challenge:** Add another call `await OperacionAsync("File", 700)` and predict execution order.
+- **Question:** Do you see any real parallelism?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 2 – LogicalConcurrency
-- Ejecuta varias tareas sin esperar inmediatamente (`Task t1 = OperacionAsync(...); Task t2 = OperacionAsync(...);`).
-- **Reto:** Intercala un `await t1` después de otro `await` y predice los `ThreadId`.
-- **Pregunta:** ¿Cuándo se crea un nuevo hilo físico?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
-
----
+- Start multiple tasks without awaiting immediately (`Task t1 = OperacionAsync(...); Task t2 = OperacionAsync(...);`).
+- **Challenge:** Interleave `await t1` after another await and predict `ThreadId`.
+- **Question:** When is a new physical thread created?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 3 – DelayedAwait
-- Modifica los delays y observa cómo cambia el orden de finalización.
-- **Reto:** Añade `Console.WriteLine` antes y después de cada `await` con `DateTime.Now`.
-- **Pregunta:** ¿Qué representa el hilo lógico principal? ¿Qué representan los hilos físicos?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
-
----
+- Modify delays and observe how completion order changes.
+- **Challenge:** Add `Console.WriteLine` before and after each await with `DateTime.Now`.
+- **Question:** What represents the main logical thread? What represent the physical threads?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 4 – WhenAll
-- Ejecuta varias tareas con `Task.WhenAll`.
-- **Reto:** Añade una Task con excepción y captura el error con `try/catch`.
-- **Pregunta:** ¿Qué diferencias observas con usar `await` secuencialmente?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Run multiple tasks with `Task.WhenAll`.
+- **Challenge:** Add a Task that throws an exception and catch it using `try/catch`.
+- **Question:** How does this differ from sequential `await` usage?
+- **Observations:**  
+  (Write your notes here)
 
 ---
 
@@ -67,31 +62,31 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 - [ ] Mission 4 – Parallel vs Sequential
 
 ### Mission 1 – Sequential CPU
-- Ejecuta CPU-bound secuencial y mide tiempo con `Stopwatch`.
-- **Pregunta:** ¿Qué pasa si aumentas iteraciones o complejidad?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Run CPU-bound work sequentially and measure time using `Stopwatch`.
+- **Question:** What happens if you increase iterations or complexity?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 2 – Parallel.For
-- Observa varios `ThreadId` en ejecución.
-- **Reto:** Incrementa iteraciones y predice cuántos threads se usarán.
-- **Pregunta:** ¿El orden de salida es determinista?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Observe multiple `ThreadId`s in execution.
+- **Challenge:** Increase iterations and predict how many threads will be used.
+- **Question:** Is the output order deterministic?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 3 – Parallel.ForEach
-- Aplica operaciones paralelas sobre una colección.
-- **Reto:** Introduce `Task.Delay` dentro del loop.
-- **Pregunta:** ¿Cómo afecta esto al paralelismo?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Apply parallel operations over a collection.
+- **Challenge:** Introduce `Task.Delay` inside the loop.
+- **Question:** How does this affect parallelism?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 4 – Parallel vs Sequential
-- Compara tiempos de ejecución entre secuencial y paralelo.
-- **Reto:** Mezcla código CPU-bound y async I/O.
-- **Pregunta:** ¿Qué diferencias observas en uso de CPU y orden de ejecución?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Compare execution time between sequential and parallel code.
+- **Challenge:** Mix CPU-bound code and async I/O.
+- **Question:** What differences do you notice in CPU usage and execution order?
+- **Observations:**  
+  (Write your notes here)
 
 ---
 
@@ -103,28 +98,28 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 - [ ] Mission 4 – TaskWhenAllBehavior
 
 ### Mission 1 – TaskRunCPU
-- Observa cómo ThreadPool asigna threads para CPU-bound tasks.
-- **Pregunta:** ¿Se crean threads nuevos o se reutilizan?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Observe how ThreadPool assigns threads for CPU-bound tasks.
+- **Question:** Are new threads created or reused?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 2 – MultipleConcurrentTasks
-- Ejecuta varias tareas concurrentes y observa el orden de finalización.
-- **Reto:** Combina `await Task.WhenAll(...)` y mide tiempos.
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Run multiple concurrent tasks and observe completion order.
+- **Challenge:** Combine with `await Task.WhenAll(...)` and measure timings.
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 3 – AsyncIOConcurrency
-- Simula operaciones I/O con `Task.Delay`.
-- **Pregunta:** ¿Qué hilos quedan libres durante I/O?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Simulate I/O operations using `Task.Delay`.
+- **Question:** Which threads are freed during I/O?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 4 – TaskWhenAllBehavior
-- Coordina múltiples tareas con `Task.WhenAll`.
-- **Reto:** Añade tareas CPU + I/O y observa el comportamiento.
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Coordinate multiple tasks using `Task.WhenAll`.
+- **Challenge:** Add CPU + I/O tasks and observe behavior.
+- **Observations:**  
+  (Write your notes here)
 
 ---
 
@@ -136,34 +131,34 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 - [ ] Mission 4 – RealisticPipeline
 
 ### Mission 1 – Sequential Mixed
-- Ejecuta CPU + I/O secuencialmente.
-- Observa `ThreadId` y tiempos.
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Execute CPU + I/O sequentially.
+- Observe `ThreadId` and timings.
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 2 – ParallelCPU_AsyncIO
-- Ejecuta CPU-bound con `Parallel.For` y await I/O.
-- **Reto:** Añade más items a procesar y observa el número de hilos.
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Run CPU-bound work with `Parallel.For` and await I/O inside.
+- **Challenge:** Add more items to process and observe thread usage.
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 3 – TaskWhenAllMixed
-- Coordina varias tareas mixtas con `Task.WhenAll`.
-- **Pregunta:** ¿Qué patrón de hilos se observa durante el flujo?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Coordinate mixed tasks using `Task.WhenAll`.
+- **Question:** What thread patterns do you notice during the flow?
+- **Observations:**  
+  (Write your notes here)
 
 ### Mission 4 – RealisticPipeline
-- Simula un pipeline real de datos combinando CPU + I/O.
-- **Reto:** Introduce delays aleatorios y mide throughput.
-- **Pregunta:** ¿Cómo afecta a la eficiencia la mezcla de operaciones?
-- **Observaciones:**  
-  (Escribe aquí tus anotaciones)
+- Simulate a real data pipeline combining CPU + I/O.
+- **Challenge:** Introduce random delays and measure throughput.
+- **Question:** How does mixing operations affect efficiency?
+- **Observations:**  
+  (Write your notes here)
 
 ---
 
 ## **Lab Challenge – Bonus**
 
-- Cada vez que completes una misión, escribe **una línea sobre lo que aprendiste**.
-- Intenta predecir resultados **antes de ejecutar**, luego observa y documenta diferencias.
-- Objetivo: construir **tu propio modelo mental sólido de concurrencia y paralelismo en C#**.
+- After each mission, write **one line about what you learned**.
+- Predict results **before executing**, then observe and document differences.
+- Goal: Build **your own solid mental model of concurrency and parallelism in C#**.
