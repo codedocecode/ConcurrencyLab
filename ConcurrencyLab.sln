@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11312.151 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Level1_AsyncConcurrency", "Level1_AsyncConcurrency\Level1_AsyncConcurrency.csproj", "{8633DFA4-704C-40EB-95C2-38FA78D3440D}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Level3_TaskThreadPool", "Level3_TaskThreadPool\Level3_TaskThreadPool.csproj", "{31F5E032-C623-4A43-A9AD-9A70F91D2707}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Level4_MixedModel", "Level4_MixedModel\Level4_MixedModel.csproj", "{B9406C63-8745-498B-BA1B-0C067BE8573A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{3237D518-2AA1-419D-8D0C-E5C7EC07EFDD}"
+	ProjectSection(SolutionItems) = preProject
+		Exercises.md = Exercises.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
