@@ -18,6 +18,14 @@ This level focuses on **Parallel**, not on async/await.
 
 ---
 
+## 🔬 Exercises
+
+➡️ **[Go to Level 2 Exercises](../Exercises.md#level-2--cpu-parallelism-parallel)**
+
+Complete all missions before moving to the next level.
+
+---
+
 ## 🎯 Missions
 
 ### Mission 1 – Sequential CPU

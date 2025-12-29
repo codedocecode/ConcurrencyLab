@@ -5,7 +5,23 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 
 ---
 
+## 🏆 Completion status
+
+- Level 1 completed: ⬜
+- Level 2 completed: ⬜
+- Level 3 completed: ⬜
+- Level 4 completed: ⬜
+
+> A level is completed only when all missions are understood, not just executed.
+
+---
+
 ## **Level 1 – Async concurrency (single logical thread)**
+
+- [ ] Mission 1 – SequentialAwait
+- [ ] Mission 2 – LogicalConcurrency
+- [ ] Mission 3 – DelayedAwait
+- [ ] Mission 4 – WhenAll
 
 ### Mission 1 – SequentialAwait
 - Ejecuta la misión tal cual y anota los `ThreadId` antes y después de cada `await`.
@@ -45,6 +61,11 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 
 ## **Level 2 – CPU parallelism (Parallel)**
 
+- [ ] Mission 1 – Sequential CPU
+- [ ] Mission 2 – Parallel.For
+- [ ] Mission 3 – Parallel.ForEach
+- [ ] Mission 4 – Parallel vs Sequential
+
 ### Mission 1 – Sequential CPU
 - Ejecuta CPU-bound secuencial y mide tiempo con `Stopwatch`.
 - **Pregunta:** ¿Qué pasa si aumentas iteraciones o complejidad?
@@ -76,6 +97,11 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 
 ## **Level 3 – Task + ThreadPool**
 
+- [ ] Mission 1 – TaskRunCPU
+- [ ] Mission 2 – MultipleConcurrentTasks
+- [ ] Mission 3 – AsyncIOConcurrency
+- [ ] Mission 4 – TaskWhenAllBehavior
+
 ### Mission 1 – TaskRunCPU
 - Observa cómo ThreadPool asigna threads para CPU-bound tasks.
 - **Pregunta:** ¿Se crean threads nuevos o se reutilizan?
@@ -103,6 +129,11 @@ Recuerda siempre **predecir el resultado antes de ejecutar** y anotar tus observ
 ---
 
 ## **Level 4 – Mixed model (CPU + I/O)**
+
+- [ ] Mission 1 – Sequential Mixed
+- [ ] Mission 2 – ParallelCPU_AsyncIO
+- [ ] Mission 3 – TaskWhenAllMixed
+- [ ] Mission 4 – RealisticPipeline
 
 ### Mission 1 – Sequential Mixed
 - Ejecuta CPU + I/O secuencialmente.

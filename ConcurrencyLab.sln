@@ -14,6 +14,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{3237D518-2AA1-419D-8D0C-E5C7EC07EFDD}"
 	ProjectSection(SolutionItems) = preProject
 		Exercises.md = Exercises.md
+		LAB_RULES.md = LAB_RULES.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
@@ -77,5 +79,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C76A5EF-B5EE-4B3E-9A48-A4A9754F1863}
 	EndGlobalSection
 EndGlobal

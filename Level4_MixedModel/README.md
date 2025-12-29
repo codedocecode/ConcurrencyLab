@@ -1,106 +1,190 @@
-# 🧪 Level 4 – Mixed Model (Parallel + Async) (ConcurrencyLab)
+# 🧪 Level 4 – Mixed Model (CPU + I/O)
 
-En este nivel combinamos **CPU paralela** con **I/O asíncrono**, mostrando el modelo más escalable y potente de .NET.
+Welcome to **ConcurrencyLab – Level 4**.
 
----
+This level represents the **most realistic and powerful concurrency model in .NET**:
+**parallel CPU work combined with asynchronous I/O**.
 
-## 🎯 Objetivo del nivel
+This is how **modern high-performance backends, pipelines and services** are built.
 
-Aprender a:
-
-- Mezclar **CPU-bound paralelo** con **I/O-bound asíncrono**
-- Observar la interacción entre hilos físicos y continuaciones de `await`
-- Escalar de forma eficiente sin bloquear hilos
-- Coordinar múltiples tareas con `Task.WhenAll` o `Parallel.ForEachAsync`
+Your goal is not to write clever code,  
+but to **observe how CPU threads and async continuations interact**.
 
 ---
 
-## 🧠 Modelo mental
+## 🎯 Level goal
 
-| Concepto          | Rol en el sistema                         |
-|-------------------|-------------------------------------------|
-| `Task`            | Representa trabajo en curso o futuro      |
-| `ThreadPool`      | Reutiliza hilos físicos                   |
-| `Parallel`        | Ejecuta CPU-bound en múltiples hilos      |
-| `async/await`     | Libera hilos durante I/O                  |
-| `Task.WhenAll`    | Coordina varias tareas concurrentes       |
+Learn how to:
 
-> **Una Task no es un hilo.**  
-> Mezclamos CPU + I/O para máxima escalabilidad.
+- Combine **CPU-bound parallelism** with **async I/O**
+- Understand how `Parallel`, `Task`, and `async/await` coexist
+- Avoid blocking while maximizing throughput
+- Reason about real-world concurrent pipelines
 
 ---
 
-## 📦 Misiones del nivel
+## 🔬 Exercises
+
+➡️ **[Go to Level 4 Exercises](../Exercises.md#level-4--mixed-model-cpu--io)**
+
+Complete all missions before moving to the next level.
+
+---
+
+## 🧠 Mental model
+
+| Concept            | Role in the system                          |
+|--------------------|----------------------------------------------|
+| `Thread`           | Executes CPU instructions                   |
+| `ThreadPool`       | Reuses worker threads                       |
+| `Parallel`         | Runs CPU-bound work in parallel             |
+| `Task`             | Represents logical work                     |
+| `async / await`    | Releases threads during I/O                 |
+| `Task.WhenAll`     | Coordinates multiple tasks                  |
+
+> **Tasks are not threads.**  
+> **CPU work consumes threads.**  
+> **I/O work frees threads.**
+
+Correctly mixing them is the key to scalability.
+
+---
+
+## 📦 Missions
 
 ### 🟢 Mission 1 – Sequential Mixed
 
-- Secuencia de operaciones I/O simuladas
-- Observa el cambio de `ThreadId` tras `await`
-- **Key**: `await TrabajoAsync(...)`
+> What happens when async I/O is executed sequentially?
+
+What it demonstrates:
+- Sequential async flow
+- No parallel CPU work
+- Thread may change after each `await`
+
+Expected behavior:
+- Predictable order
+- No blocking
+- ThreadId may vary
 
 ---
 
 ### 🟢 Mission 2 – Parallel CPU + Async I/O
 
-- Paralelismo real de CPU con `Parallel.ForEachAsync`
-- I/O simulado dentro del ciclo
-- **Key**: mezcla de bucle CPU y `await Task.Delay(...)`
+> What happens when parallel CPU work contains async I/O?
+
+What it demonstrates:
+- Real CPU parallelism
+- Async I/O inside parallel execution
+- Thread reuse and continuation switching
+
+Expected behavior:
+- Multiple ThreadIds
+- Interleaved output
+- Non-deterministic order
 
 ---
 
 ### 🟢 Mission 3 – Task.WhenAll Mixed
 
-- Combina `Task.Run` para CPU y `async` para I/O
-- Coordinación de 4 tareas con `Task.WhenAll`
-- Observa inicio casi simultáneo y finalización no determinista
+> How do CPU-bound and I/O-bound tasks coordinate?
+
+What it demonstrates:
+- Mixing `Task.Run` (CPU) with async methods (I/O)
+- Coordinating multiple tasks
+- Efficient waiting without blocking
+
+Expected behavior:
+- Near-simultaneous start
+- Independent completion
+- Continuation only after all tasks finish
 
 ---
 
 ### 🟢 Mission 4 – Realistic Pipeline
 
-- Procesamiento de múltiples elementos
-- CPU paralelo + I/O simulado por elemento
-- Modelo cercano a pipelines de datos reales
-- Observa cambios de hilo y orden de salida no determinista
+> How does a real concurrent pipeline behave?
+
+What it demonstrates:
+- Processing multiple items
+- Parallel CPU stages
+- Async I/O per item
+- High throughput without blocking
+
+Expected behavior:
+- Many ThreadId changes
+- Unpredictable order
+- Stable, scalable execution
 
 ---
 
-## 👀 Qué observar en consola
+## 👀 What to observe in console
 
-- `ThreadId` cambia tras `await` (I/O)
-- CPU paralelo usa hilos distintos
-- Orden de salida puede no ser secuencial → normal
+- **ThreadId** changes after `await`
+- CPU work runs on multiple threads
+- I/O does not block threads
+- Output order is **not deterministic** (and should not be)
 
-| Misión | Tipo de concurrencia                  |
-|--------|--------------------------------------|
-| 1      | Secuencial I/O con await              |
-| 2      | CPU + I/O paralelo                    |
-| 3      | Task.WhenAll coordinación CPU + I/O  |
-| 4      | Pipeline real CPU + I/O               |
-
----
-
-## ⚠️ Errores comunes
-
-- ❌ Bloquear con `.Result` o `.Wait()`
-- ❌ Usar `Task.Run` innecesariamente para I/O
-- ❌ Pensar que Task = hilo físico
+| Mission | Concurrency model              |
+|--------:|--------------------------------|
+| 1       | Sequential async I/O           |
+| 2       | Parallel CPU + async I/O       |
+| 3       | Task.WhenAll coordination      |
+| 4       | Real-world CPU + I/O pipeline  |
 
 ---
 
-## 🧩 Regla de oro
+## ⚠️ Common mistakes
 
-> Threads ejecutan. Tasks representan trabajo.  
-> El ThreadPool decide cómo y cuándo ejecutar.  
-> Mezclar CPU + I/O correctamente permite **máxima escalabilidad**.
+- ❌ Blocking with `.Result` or `.Wait()`
+- ❌ Using `Task.Run` for I/O
+- ❌ Assuming a Task belongs to a thread
+- ❌ Expecting ordered output in parallel systems
 
 ---
 
-## 🏁 Al terminar este nivel
+## 🧠 Final questions
 
-Sabes:
+After completing all missions:
 
-- Cómo mezclar **CPU-bound** y **I/O-bound** sin bloquear hilos
-- Por qué `Parallel + async/await` es potente
-- Cómo escalar servicios de alto rendimiento en .NET
+- Why is combining CPU-bound and I/O-bound work more efficient than handling them separately?
+- Why should CPU-bound work use `Parallel` or `Task.Run`, but I/O should not?
+- Why does `await` allow better scalability when mixed with parallel CPU work?
+- Why is output order unpredictable in realistic concurrent pipelines?
 
+If you can answer these, you understand **how high-performance .NET systems are built**.
+
+---
+
+## 🧩 Mental model takeaway
+
+> **CPU work needs threads.**  
+> **I/O work needs async.**  
+> **Tasks represent work, not execution.**  
+> **The ThreadPool orchestrates everything.**
+
+Mixing these correctly unlocks maximum throughput.
+
+---
+
+## 🏁 What you learned in Level 4
+
+You now understand:
+
+- How to combine **parallel CPU work** with **async I/O**
+- Why modern .NET services scale without blocking threads
+- How real-world data pipelines are structured
+- Why mixed models are powerful — and dangerous if misunderstood
+
+---
+
+## 🚀 End of ConcurrencyLab
+
+You now have a **correct mental model** of:
+
+- Threads vs Tasks
+- Concurrency vs Parallelism
+- Async vs Blocking
+- CPU-bound vs I/O-bound work
+
+You are ready to reason about performance, scalability,  
+and concurrency trade-offs in real .NET systems.

@@ -1,173 +1,142 @@
-# 🧪 Level 3 – Task + ThreadPool (ConcurrencyLab)
+# Level 3 – Task + ThreadPool Concurrency (Missions)
 
-En este nivel entramos en el **modelo real usado por backends modernos en .NET**:
-**concurrencia multihilo basada en `Task` y `ThreadPool`**.
+Welcome to **ConcurrencyLab – Level 3**.
 
-Aquí **ya no controlamos hilos directamente**.  
-Delegamos esa responsabilidad al runtime.
+In this level you will explore **real-world concurrency as used in modern .NET backends**:
+**multiple Tasks executed by the ThreadPool**.
 
----
+You no longer control threads directly.  
+You delegate execution to the runtime.
 
-## 🎯 Objetivo del nivel
-
-Aprender a:
-
-- Entender `Task` como **unidad lógica de trabajo**
-- Ver cómo el **ThreadPool gestiona los hilos físicos**
-- Diferenciar claramente:
-  - CPU-bound (`Task.Run`)
-  - I/O-bound (`async / await`)
-- Componer trabajo concurrente con `Task.WhenAll`
+Your goal is to understand **how work is scheduled**, not to force execution order.
 
 ---
 
-## 🧠 Modelo mental
+## 🧪 Rules
 
-| Concepto       | Rol en el sistema                         |
-|----------------|--------------------------------------------|
-| `Task`         | Representa trabajo en curso o futuro       |
-| `ThreadPool`   | Reutiliza hilos para ejecutar tareas       |
-| `Task.Run`     | Encola trabajo CPU-bound en el ThreadPool  |
-| `async/await`  | Libera hilos durante I/O                   |
-| `WhenAll`      | Sincroniza múltiples tareas                |
-
-> **Una Task no es un hilo.**  
-> Es una abstracción sobre *trabajo*, no sobre *ejecución*.
+- Do NOT create threads manually
+- Avoid blocking (`.Wait()`, `.Result`)
+- Use `Task.Run` only for CPU-bound work
+- Observe thread reuse and scheduling behavior
 
 ---
 
-## 📦 Misiones del nivel
+## 🔬 Exercises
 
-### 🟢 Mission 1 – Task.Run (CPU-bound)
+➡️ **[Go to Level 3 Exercises](../Exercises.md#level-3--task--threadpool-concurrency)**
 
-📌 **Qué demuestra**
-- Trabajo CPU intensivo
-- Uso explícito del ThreadPool
-- Ejecución en varios hilos físicos
-
-📌 **Clave**
-```csharp
-Task.Run(() => TrabajoCPU());
-```
-## 📌 Observa
-
-- Distintos `ThreadId`
-- Paralelismo real
+Complete all missions before moving to the next level.
 
 ---
 
-## 🟢 Mission 2 – Multiple concurrent Tasks
+## 🎯 Missions
 
-### 📌 Qué demuestra
+### Mission 1 – Task.Run (CPU-bound)
+> What happens when CPU-heavy work is offloaded to the ThreadPool?
 
-- Varias tareas concurrentes
-- Ninguna ligada a un hilo fijo
-- Coordinación con `Task.WhenAll`
+Expected behavior:
+- Real parallelism
+- Multiple physical threads
+- Work executed by the ThreadPool
+- No guaranteed order
 
-### 📌 Clave
-
-- `Task` representa trabajo, no ejecución física
-
-```csharp
-await Task.WhenAll(t1, t2, t3);
-```
-
-### 📌 Observa
-
-- Inicio casi simultáneo
-- Finalización en distinto orden
+Key idea:
+- `Task.Run` schedules CPU-bound work
 
 ---
 
-## 🟢 Mission 3 – Async I/O concurrency
+### Mission 2 – Multiple Concurrent Tasks
+> What happens when several tasks run at the same time?
 
-### 📌 Qué demuestra
+Expected behavior:
+- Tasks start almost simultaneously
+- No task is bound to a specific thread
+- Completion order is unpredictable
 
-- Concurrencia sin bloqueo
-- Liberación de hilos durante I/O
-- Alta escalabilidad
-
-### 📌 Clave
-
-```csharp
-await Task.Delay(...)
-```
-
-- `async/await` libera el hilo mientras espera I/O
-
-### 📌 Observa
-
-- El `ThreadId` puede cambiar tras el `await`
-- No hay hilos bloqueados esperando
+Key idea:
+- A `Task` represents work, not execution
 
 ---
 
-## 🟢 Mission 4 – Task.WhenAll behavior
+### Mission 3 – Async I/O Concurrency
+> How does async I/O behave under concurrency?
 
-### 📌 Qué demuestra
+Expected behavior:
+- No threads blocked during I/O
+- Thread may change after `await`
+- High scalability
 
-- Sincronización de múltiples tareas
-- Espera eficiente
-- Manejo limpio de errores (conceptualmente)
+Key idea:
+- `async/await` frees threads during I/O waits
 
-### 📌 Clave
+---
+
+### Mission 4 – Task.WhenAll
+> How do we coordinate multiple concurrent tasks?
+
+Expected behavior:
+- All tasks run concurrently
+- Execution continues only after all complete
+- Any exception fails the whole batch
+
+Key idea:
+- `Task.WhenAll` synchronizes without blocking
+
+---
+
+## 👀 What to observe in console
+
+- **ThreadId:** `Environment.CurrentManagedThreadId`
+- Thread reuse across tasks
+- Thread switches after `await`
+- Non-deterministic output order
+
+---
+
+## ▶️ How to run
+
+In `Program.cs` you can switch missions:
 
 ```csharp
-await Task.WhenAll(t1, t2);
+// await Mission1_TaskRunCpuBound.Run();
+// await Mission2_MultipleConcurrentTasks.Run();
+// await Mission3_AsyncIoConcurrency.Run();
+// await Mission4_TaskWhenAll.Run();
 ```
 
-- `Task.WhenAll` coordina sin bloquear
+Uncomment the mission you want to execute.
 
-### 📌 Observa
+## 🧠 Final questions
 
-- El flujo continúa solo cuando todas finalizan
-- Modelo ideal para backend y APIs
+After completing all missions:
 
----
+- Why doesn’t a `Task` belong to a specific thread?
+- Why is `Task.Run` wrong for I/O?
+- How does the `ThreadPool` improve scalability?
+- Why is blocking harmful in concurrent systems?
 
-## 👀 Qué observar en consola
-
-- `ThreadId`: `Environment.CurrentManagedThreadId`
-- Cambios de hilo tras `await`
-- Orden de salida **no determinista** (esperado)
+Being able to answer these means you understand **backend concurrency in .NET**.
 
 ---
 
-## 📊 Resumen por misión
+## 🧩 Mental model takeaway
 
-| Misión | Tipo de concurrencia          |
-|------:|-------------------------------|
-| 1     | Paralelismo real (CPU)        |
-| 2     | Concurrencia multihilo        |
-| 3     | Concurrencia I/O              |
-| 4     | Coordinación de tareas        |
+> **Threads execute.**  
+> **Tasks represent work.**  
+> **The ThreadPool decides when and where execution happens.**
 
 ---
 
-## ⚠️ Errores comunes
+## 🏁 What you learned in Level 3
 
-- ❌ Usar `Task.Run` para I/O
-- ❌ Pensar que una `Task` = un hilo
-- ❌ Bloquear con `.Result` o `.Wait()`
+You now understand:
 
----
-
-## 🧩 Regla de oro
-
-> **Threads ejecutan. Tasks representan trabajo.**  
-> El `ThreadPool` decide cómo y cuándo ejecutar.
+- Why `Task` scales better than `Thread`
+- How modern .NET servers handle concurrency
+- How CPU-bound and I/O-bound work differ
+- Why `async` is essential for backend systems
 
 ---
 
-## 🏁 Al terminar este nivel
-
-Sabes:
-
-- Por qué `Task` es preferible a `Thread`
-- Cómo escalan los servidores .NET
-- Por qué `async/await` es clave en backend
-
-👉 El siguiente paso es combinar CPU + I/O de forma eficiente.
-
-➡️ **Level 4 – Mixed Model (Parallel + Async)**  
-Aquí se junta todo.
+➡️ **Next level: Level 4 – Mixed Model (CPU + I/O)**  
+Here everything comes together.

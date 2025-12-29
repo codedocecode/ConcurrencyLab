@@ -18,6 +18,14 @@ Your goal is **not** to memorize syntax, but to **observe runtime behavior** and
 
 ---
 
+## 🔬 Exercises
+
+➡️ **[Go to Level 1 Exercises](../Exercises.md#level-1--async-concurrency-single-logical-thread)**
+
+Complete all missions before moving to the next level.
+
+---
+
 ## 🎯 Missions
 
 ### Mission 1 – Sequential Await

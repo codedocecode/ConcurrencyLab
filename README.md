@@ -52,6 +52,19 @@ You will:
 
 ---
 
+## 🧪 Practice & Progress
+
+This lab is designed to be used hands-on.
+
+➡️ **[Exercises & Progress Checklist](./Exercises.md)**
+
+- Step-by-step missions
+- Prediction before execution
+- Observation-driven learning
+- Personal notes and conclusions
+
+---
+
 ## 📦 Levels Overview
 
 ### Level 1 – Async concurrency (Single logical thread)
